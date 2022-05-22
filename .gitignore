@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+/.vs
+/OpenGL/alferdom/.vs
+/OpenGL/alferdom/x64/Debug
