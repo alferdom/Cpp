@@ -3,14 +3,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
-#include "ConfigLoader.h"
+#include "data.h"
 #include "InitFunctions.h"
 #include "Shader.h"
 #include "VertexBuffer.h"
@@ -19,3 +13,11 @@
 #include "VertexBufferLayout.h"
 #include "Renderer.h"
 #include "Model.h"
+#include "Camera.h"
+#include "Skybox.h"
+#include "Light.h"
+#include "CatmullRow.h"
+#include "AnimatedTexture.h"
+
+int main(void);
+void processInput(GLFWwindow* window);

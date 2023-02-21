@@ -5,6 +5,7 @@
 VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &RendererID);
+	Bind();
 }
 
 VertexArray::~VertexArray()

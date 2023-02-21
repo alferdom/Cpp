@@ -1,5 +1,6 @@
 #pragma	once
 
+#include <GL/glew.h>
 #include "initFunctions.h"
 
 GLFWwindow* initGLFW(const ConfigLoader& configLoader) {
@@ -10,7 +11,7 @@ GLFWwindow* initGLFW(const ConfigLoader& configLoader) {
         exit(-1);
 
     /* Specification of OpenGL */
-    glfwWindowHint(GLFW_SAMPLES, 4);
+    //glfwWindowHint(GLFW_SAMPLES, 4); /// 4xMSAA
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, configLoader.verMajor);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, configLoader.verMinor);
     glfwWindowHint(GLFW_OPENGL_PROFILE, configLoader.profile);
@@ -37,8 +38,19 @@ GLFWwindow* initGLFW(const ConfigLoader& configLoader) {
         exit(-2);
     }
 
-    /* Make the window's context current */
+    // Make the window's context current adn set controls callbacks
     glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+    // enable sticky keys checking
+    glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+    // Hide the mouse and enable unlimited movement
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetCursorPos(window, configLoader.wWidth / 2, configLoader.wHeight / 2);
+
+    //glfwPollEvents();
 
     return window;
 }
@@ -59,4 +71,13 @@ void GLAPIENTRY MessageCallback(GLenum source, GLenum type, GLuint id, GLenum se
     fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
         (type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
         type, severity, message);
+}
+
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+// ---------------------------------------------------------------------------------------------
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    // make sure the viewport matches the new window dimensions; note that width and 
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, width, height);
 }

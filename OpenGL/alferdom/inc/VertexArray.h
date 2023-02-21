@@ -13,7 +13,6 @@ public:
 	~VertexArray();
 	
 	void AddBuffer(const VertexBuffer& VBO, const VertexBufferLayout& layout);
-	void AddBufferModel(const VertexBuffer& VBO, const VertexBufferLayout& layout);
 
 	void Bind() const;
 	void Unbind() const;

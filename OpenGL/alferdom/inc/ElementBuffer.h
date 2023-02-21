@@ -6,7 +6,7 @@ private:
 	unsigned int RendererID;
 	unsigned int Count;
 public:
-	ElementBuffer();
+	ElementBuffer() = default;
 	ElementBuffer(const unsigned int* data, unsigned int count);
 	~ElementBuffer();
 

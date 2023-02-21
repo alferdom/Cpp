@@ -9,8 +9,8 @@ class Renderer
 {
 private:
 public:
-	Renderer() {};
-	~Renderer() {};
+	Renderer();
+	~Renderer() = default;
 
 	void Clear() const;
 	void Draw(const VertexArray& VAO, const ElementBuffer& EBO, const Shader& shader) const;
